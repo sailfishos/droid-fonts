@@ -1,0 +1,21 @@
+* Thu Jul 29 2010 Yan Li <yan.i.li@intel.com> - 1.0.113_20100701
+- New fonts from upstream:
+  DroidSansArabic.ttf
+  DroidSansHebrew.ttf
+  DroidSansThai.ttf
+- DroidSansFallback upgraded from 2.20 to 2.31, added 4,398 Chinese
+  characters, which adds approximately ~0.5 MB to the system.
+- Using Fedora's latest fontconfig files for better handling of font
+  renaming
+
+* Mon Mar 29 2010 Yan Li <yan.i.li@intel.com> - 1.0.113_20100328
+- Changelog cleaned up
+- Rename Droid font's configure file to 55-* to make its priority
+  higher than that of Deja Vu fonts (MeeGo Bug #183)
+- Upgraded to latest upstream release to fix a few glyph errors
+
+* Sun Sep 27 2009 Jian-feng Ding <jian-feng.ding@intel.com> - 1.0.112
+- Provide scalable-font-ja and scalable-font-zh-XX by droid-sans-font
+
+* Fri Jul 10 2009 Damien Lespiau <damien.lespiau@intel.com> - 1.0.112
+- First import in moblin under the name of droid-fonts

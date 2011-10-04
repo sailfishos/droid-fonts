@@ -1,0 +1,5 @@
+<package project="Mer:Trunk:Base" name="droid-fonts">
+  <title>General-purpose fonts released by Google as part of Android</title>
+  <description/>
+  <url>http://android.git.kernel.org/?p=platform/frameworks/base.git;a=tree;f=data/fonts</url>
+</package>
