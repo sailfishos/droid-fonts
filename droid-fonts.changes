@@ -1,5 +1,5 @@
 * Thu Sep 17 2015 Pekka Vuorela <pekka.vuorela@jollamobile.com> - 1.0.114_20150917
-- Updated fontconfig rules not to create warnings on newer versions
+- Updated fontconfig rules not to create warnings on newer versions. Contributes to MER#708
 
 * Thu Jul 29 2010 Yan Li <yan.i.li@intel.com> - 1.0.113_20100701
 - New fonts from upstream:
