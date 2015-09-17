@@ -16,13 +16,13 @@ Summary: General-purpose fonts released by Google as part of Android
 Group:     User Interface/X
 License:   ASL 2.0
 URL:       http://android.git.kernel.org/?p=platform/frameworks/base.git;a=tree;f=data/fonts
-Source0:   droid-fonts-%{version}.tar.xz
+Source0:   droid-fonts-1.0.113_20100701.tar.xz
 Source9:   NOTICE
 Source10:  README.txt
 Source11:  %{name}-sans-fontconfig.conf
 Source12:  %{name}-sans-mono-fontconfig.conf
 Source13:  %{name}-serif-fontconfig.conf
-BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-1.0.113_20100701-%{release}-XXXXXX)
 
 BuildArch:     noarch
 BuildRequires: fontpackages-devel
@@ -83,7 +83,7 @@ companion Droid Sans.
 
 
 %prep
-%setup -q
+%setup -q -n %{name}-1.0.113_20100701
 install -m 0644 -p %{SOURCE9}  notice.txt
 install -m 0644 -p %{SOURCE10} readme.txt
 
