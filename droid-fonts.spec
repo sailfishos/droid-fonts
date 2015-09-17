@@ -9,7 +9,7 @@ other screen text.
 
 Name:    %{fontname}-fonts
 # The font files all have the same version except for sans fallback which I'm going to ignore here
-Version: 1.0.113_20100701
+Version: 1.0.114_20150917
 Release: 1
 Summary: General-purpose fonts released by Google as part of Android
 
