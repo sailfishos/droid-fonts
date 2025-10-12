@@ -1,3 +1,6 @@
+* Sun Oct 12 2025 Matti Viljanen <matti.viljanen@jolla.com> - 1.0.115_20251012
+- Don't use wildcards when listing fonts. JB#62519
+
 * Thu Sep 17 2015 Pekka Vuorela <pekka.vuorela@jollamobile.com> - 1.0.114_20150917
 - Updated fontconfig rules not to create warnings on newer versions. Contributes to MER#708
 

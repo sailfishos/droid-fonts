@@ -1,5 +1,14 @@
 %global fontname droid
 
+# %%_font_pkg can't handle wildcards. Only use one line per list.
+%global sans_fonts DroidSans.ttf DroidSans-Bold.ttf DroidSansFallback.ttf DroidSansJapanese.ttf DroidSansArabic.ttf DroidSansHebrew.ttf DroidSansThai.ttf
+%global serif_fonts DroidSerif-Bold.ttf DroidSerif-BoldItalic.ttf DroidSerif-Italic.ttf DroidSerif-Regular.ttf
+%global sans_mono_fonts DroidSansMono.ttf
+
+%global sans_conf 55-%{fontname}-sans.conf
+%global serif_conf 55-%{fontname}-serif.conf
+%global sans_mono_conf 55-%{fontname}-sans-mono.conf
+
 %global common_desc \
 The Droid typeface family was designed in the fall of 2006 by Ascender's \
 Steve Matteson, as a commission from Google to create a set of system fonts \
@@ -9,13 +18,11 @@ other screen text.
 
 Name:    %{fontname}-fonts
 # The font files all have the same version except for sans fallback which I'm going to ignore here
-Version: 1.0.114_20150917
+Version: 1.0.115_20251012
 Release: 1
 Summary: General-purpose fonts released by Google as part of Android
-
-Group:     User Interface/X
 License:   ASL 2.0
-URL:       http://android.git.kernel.org/?p=platform/frameworks/base.git;a=tree;f=data/fonts
+URL:       https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/data/fonts/
 Source0:   droid-fonts-1.0.113_20100701.tar.xz
 Source9:   NOTICE
 Source10:  README.txt
@@ -30,7 +37,6 @@ BuildRequires: fontpackages-devel
 %description
 %common_desc
 
-
 %package -n %{fontname}-sans-fonts
 Summary:   A humanist sans serif typeface
 Provides:  scalable-font-ja
@@ -38,7 +44,7 @@ Provides:  scalable-font-zh-TW
 Provides:  scalable-font-zh-HK
 Provides:  scalable-font-zh-CN
 Provides:  scalable-font-zh-SG
-Provides:  scalable-font-zh-MO 
+Provides:  scalable-font-zh-MO
 Requires:  fontpackages-filesystem
 Obsoletes: %{name}-common
 
@@ -48,9 +54,7 @@ Obsoletes: %{name}-common
 Droid Sans is a humanist sans serif typeface designed for user interfaces and
 electronic communication.
 
-# can't use wildcard for Sans fonts since we also have `SansMono'
-%_font_pkg -n sans -f ??-%{fontname}-sans.conf DroidSans.ttf DroidSans-Bold.ttf DroidSansFallback.ttf DroidSansJapanese.ttf DroidSansArabic.ttf DroidSansHebrew.ttf DroidSansThai.ttf
-
+%_font_pkg -n sans -f %{sans_conf} %{sans_fonts}
 
 %package -n %{fontname}-sans-mono-fonts
 Summary:  A humanist monospace sans serif typeface
@@ -62,9 +66,8 @@ Requires: fontpackages-filesystem
 Droid Sans Mono is a humanist monospace sans serif typeface designed for user
 interfaces and electronic communication.
 
-%_font_pkg -n sans-mono -f ??-%{fontname}-sans-mono.conf DroidSansMono.ttf
+%_font_pkg -n sans-mono -f %{sans_mono_conf} %{sans_mono_fonts}
 %doc *.txt
-
 
 %package -n %{fontname}-serif-fonts
 Summary:  A contemporary serif typeface
@@ -79,42 +82,24 @@ text displayed on small screens. Vertical stress and open forms contribute to
 its readability while its proportion and overall design complement its
 companion Droid Sans.
 
-%_font_pkg -n serif -f ??-%{fontname}-serif.conf DroidSerif*ttf
-
+%_font_pkg -n serif -f %{serif_conf} %{serif_fonts}
 
 %prep
 %setup -q -n %{name}-1.0.113_20100701
 install -m 0644 -p %{SOURCE9}  notice.txt
 install -m 0644 -p %{SOURCE10} readme.txt
 
-
 %build
 
-
 %install
-rm -fr %{buildroot}
-
 install -m 0755 -d %{buildroot}%{_fontdir}
-
 install -m 0644 -p *.ttf %{buildroot}%{_fontdir}
+install -m 0755 -d %{buildroot}%{_fontconfig_templatedir}/ %{buildroot}%{_fontconfig_confdir}
 
-install -m 0755 -d %{buildroot}%{_fontconfig_templatedir} \
-                   %{buildroot}%{_fontconfig_confdir}
+install -m 0644 -p %{SOURCE11} %{buildroot}%{_fontconfig_templatedir}/%{sans_conf}
+install -m 0644 -p %{SOURCE12} %{buildroot}%{_fontconfig_templatedir}/%{sans_mono_conf}
+install -m 0644 -p %{SOURCE13} %{buildroot}%{_fontconfig_templatedir}/%{serif_conf}
 
-install -m 0644 -p %{SOURCE11} \
-        %{buildroot}%{_fontconfig_templatedir}/55-%{fontname}-sans.conf
-install -m 0644 -p %{SOURCE12} \
-        %{buildroot}%{_fontconfig_templatedir}/55-%{fontname}-sans-mono.conf
-install -m 0644 -p %{SOURCE13} \
-        %{buildroot}%{_fontconfig_templatedir}/55-%{fontname}-serif.conf
-
-for fontconf in 55-%{fontname}-sans.conf \
-                55-%{fontname}-sans-mono.conf \
-                55-%{fontname}-serif.conf ; do
-  ln -s %{_fontconfig_templatedir}/$fontconf \
-        %{buildroot}%{_fontconfig_confdir}/$fontconf
-done
-
-
-%clean
-rm -fr %{buildroot}
+ln -sf %{_fontconfig_templatedir}/%{sans_conf}      %{buildroot}%{_fontconfig_confdir}/
+ln -sf %{_fontconfig_templatedir}/%{sans_mono_conf} %{buildroot}%{_fontconfig_confdir}/
+ln -sf %{_fontconfig_templatedir}/%{serif_conf}     %{buildroot}%{_fontconfig_confdir}/
