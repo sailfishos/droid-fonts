@@ -1,6 +1,6 @@
 %global fontname droid
 
-# %%_font_pkg can't handle wildcards. Only use one line per list.
+# Don't wrap the lines, %%_font_pkg does't like it.
 %global sans_fonts DroidSans.ttf DroidSans-Bold.ttf DroidSansFallback.ttf DroidSansJapanese.ttf DroidSansArabic.ttf DroidSansHebrew.ttf DroidSansThai.ttf
 %global serif_fonts DroidSerif-Bold.ttf DroidSerif-BoldItalic.ttf DroidSerif-Italic.ttf DroidSerif-Regular.ttf
 %global sans_mono_fonts DroidSansMono.ttf
@@ -18,15 +18,13 @@ other screen text.
 
 Name:    droid-fonts
 # The font files all have the same version except for sans fallback which I'm going to ignore here
-Version: 1.0.116
+Version: 1.0.117
 Release: 1
 Summary: General-purpose fonts released by Google as part of Android
 License:   ASL 2.0
 URL:       https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/data/fonts/
 Source0:   droid-fonts-1.0.113_20100701.tar.xz
-Source1:   %{name}-%{version}.tar.xz
-Source9:   NOTICE
-Source10:  README.txt
+Source1:   README
 Source11:  %{name}-sans-fontconfig.conf
 Source12:  %{name}-sans-mono-fontconfig.conf
 Source13:  %{name}-serif-fontconfig.conf
@@ -56,6 +54,8 @@ Droid Sans is a humanist sans serif typeface designed for user interfaces and
 electronic communication.
 
 %_font_pkg -n sans -f %{sans_conf} %{sans_fonts}
+%license NOTICE
+%doc README.txt
 
 %package -n %{fontname}-sans-mono-fonts
 Summary:  A humanist monospace sans serif typeface
@@ -68,7 +68,8 @@ Droid Sans Mono is a humanist monospace sans serif typeface designed for user
 interfaces and electronic communication.
 
 %_font_pkg -n sans-mono -f %{sans_mono_conf} %{sans_mono_fonts}
-%doc *.txt
+%license NOTICE
+%doc README.txt
 
 %package -n %{fontname}-serif-fonts
 Summary:  A contemporary serif typeface
@@ -84,11 +85,11 @@ its readability while its proportion and overall design complement its
 companion Droid Sans.
 
 %_font_pkg -n serif -f %{serif_conf} %{serif_fonts}
+%license NOTICE
+%doc README.txt
 
 %prep
 %setup -q -n %{name}-1.0.113_20100701
-install -m 0644 -p %{SOURCE9}  notice.txt
-install -m 0644 -p %{SOURCE10} readme.txt
 
 %build
 

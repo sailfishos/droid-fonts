@@ -1,3 +1,6 @@
+* Wed Oct 15 2025 Matti Viljanen <matti.viljanen@jolla.com> - 1.0.117
+- Fix packaging again. JB#62519
+
 * Wed Oct 15 2025 Matti Viljanen <matti.viljanen@jolla.com> - 1.0.116+git1
 - Fix packaging. JB#62519
 

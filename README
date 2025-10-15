@@ -1,0 +1,4 @@
+Droid font packages for Sailfish OS
+
+This is intentionally a dumb package, as the source tree
+would be massive to pull in and we only need a small fraction of it.
