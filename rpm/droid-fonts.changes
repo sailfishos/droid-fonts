@@ -1,3 +1,6 @@
+* Wed Oct 15 2025 Matti Viljanen <matti.viljanen@jolla.com> - 1.0.116+git1
+- Fix packaging. JB#62519
+
 * Sun Oct 12 2025 Matti Viljanen <matti.viljanen@jolla.com> - 1.0.115_20251012
 - Don't use wildcards when listing fonts. JB#62519
 

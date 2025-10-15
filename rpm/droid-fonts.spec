@@ -16,14 +16,15 @@ for its Android platform. The goal was to provide optimal quality and comfort \
 on a mobile handset when rendered in application menus, web browsers and for \
 other screen text.
 
-Name:    %{fontname}-fonts
+Name:    droid-fonts
 # The font files all have the same version except for sans fallback which I'm going to ignore here
-Version: 1.0.115_20251012
+Version: 1.0.116
 Release: 1
 Summary: General-purpose fonts released by Google as part of Android
 License:   ASL 2.0
 URL:       https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/data/fonts/
 Source0:   droid-fonts-1.0.113_20100701.tar.xz
+Source1:   %{name}-%{version}.tar.xz
 Source9:   NOTICE
 Source10:  README.txt
 Source11:  %{name}-sans-fontconfig.conf
